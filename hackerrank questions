@@ -1,4 +1,4 @@
-Binary search tree problem to find the type of Node:
+******Binary search tree problem to find the type of Node:*******
 Root, Leaf or Inner?
 ------------------------
 select n as node,
@@ -9,4 +9,44 @@ case
 end
 from BST
 order by n;
-------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+******Occupation Problem*********************************************
+doctro, professor, actor, singer
+--------------------------------------
+select
+min(if(occupation=Doctor, name, Null)) as Doctor,
+min(if(occupation=Professor, name, Null)) as Professor,
+min(if(occupation=Actor, name, Null)) as Actor,
+min(if(occupation=singer, name, Null)) as Singer,
+
+from
+Select(name , occupation , row_number() over(partition by occupation order by name) as row_num from occupation) as name_order group by row_num
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+*************Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+
+There are a total of [occupation_count] [occupation]s.*********
+----------------------------------------------------------------
+select Concat(Name , '(' , left(occupation,1), ')')
+from occupation order by name;
+
+select concat("There are a total of", count(occupation), " ", lower(occupation), "s.") from occupations group by occupation order by 
+count(occupation), occupation;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+******Type of Triangle*********************
+Equilateral
+Isosceles
+Scalane
+Not a triangle
+----------------------------------------------------------
+SELECT 
+    CASE 
+    WHEN (A + B <= C) OR (A +C <= B) OR (B + C <= A) THEN 'Not A Triangle'
+    WHEN (A=B) AND (B=C) THEN 'Equilateral' 
+    WHEN (A<>B) AND (B<>C) AND (A<>C) THEN 'Scalene'
+    WHEN ((A=B) AND (A<>C)) OR ((A=C) AND (A<>B)) OR ((B=C) AND (B<>A)) THEN 'Isosceles'
+    END
+FROM TRIANGLES;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
