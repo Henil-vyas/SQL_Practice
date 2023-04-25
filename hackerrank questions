@@ -1,0 +1,12 @@
+Binary search tree problem to find the type of Node:
+Root, Leaf or Inner?
+------------------------
+select n as node,
+case
+ when p is null then 'Root'
+ when n not in (select distinct(p) from BST where p is not null)  then 'Leaf' 
+ else 'Inner'
+end
+from BST
+order by n;
+------------------------------------------------------------------------------------
