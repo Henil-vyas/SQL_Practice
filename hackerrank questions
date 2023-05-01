@@ -75,4 +75,18 @@ on m.company_code=e.company_code
 group by c.company_code , c.founder
 order by c.company_code;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+/*
+Enter your query here.
+*/
+select
+    case
+        when grade < 8 then 'NULL'
+        else
+        name
+    end, grade , marks
+from students join grades on 
+marks >= min_mark and
+marks <= max_mark
+order by grade desc,
+name asc
+-------------------------------------------------------------------------------------------------------------------------------------------------------
