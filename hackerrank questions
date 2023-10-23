@@ -90,3 +90,49 @@ marks <= max_mark
 order by grade desc,
 name asc
 -------------------------------------------------------------------------------------------------------------------------------------------------------
+find the runner-up score
+
+Sample Input 0
+
+5
+2 3 6 6 5
+Sample Output 0
+
+5
+-----------------
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+    mySet = set(arr)
+    z = sorted(mySet)
+    if (len(z) > 1):
+        print(z[-2])
+    else:
+        print(z[0])
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+store them in a nested list and print the name(s) of any student(s) having the second lowest grade.
+
+Note: If there are multiple students with the second lowest grade, order their names alphabetically and print each name on a new line.
+-----------------------------------------------------
+if __name__ == '__main__':
+    records = []
+    scores = []
+
+for _ in range(int(input())):
+    name = input()
+    score = float(input())
+    scores.append(score)
+    records.append([name, score])
+
+scoresset = set(scores)
+
+sec_min = sorted(scoresset)[1]
+result = []
+for record in records:
+    if record[1] == sec_min:
+        result.append(record[0])
+
+result.sort()
+for name in result:
+    print(name)
+------------------------------------------------------------------------------------------------------------------------
